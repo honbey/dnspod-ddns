@@ -20,8 +20,7 @@ API的ID和Token可以在后台获取：
 
 参数|填写说明
 :-:|:-
-|API_ID | 在个人中心后台的安全设置里面获取ID|
-API_Token|在个人中心后台的安全设置里面获取Token
+API_TOKEN|在个人中心后台的安全设置里面获取Token，包含API_ID
 domain| 你所注册的主域名，例如```baidu.com```，```qq.com```，```china.edu.cn```，```example.com```
 host|主机记录名，例如```www.baidu.com```的主机记录名是```www```，```image.www.weibo.com```的主机记录是```image.www```，```home.example.com```的主机记录名是```home```
 CHECKURL|用于检查自己的外网IP是什么的网址，注释掉该参数会跳过本地DNS检查比对，直接执行（验证域名记录是否存在以及记录是否重复后）更新；建议的备选CHECKURL：```http://ip.03k.org``` ```http://ip.3322.org``` ```http://myip.ipip.net``` ```http://checkip.dns.he.net/``` ```https://api-ipv4.ip.sb/ip```
@@ -65,3 +64,7 @@ API usage is limited|调用API频率过高账号被冻结（一小时后解封�
 [URL IP]或者[DEV IP] 和[DNS IP]不一样但和[API IP]一样|DNS有缓存，DNS记录是已经更新，属正常现象，会提示IP SAME IN API,SKIP UPDATE.自动忽略
 ### **关于**
 https://03k.org/dnspod-ddns-with-bashshell.html
+
+### Reference
+
+https://github.com/YJBeetle/ddns-dnspod

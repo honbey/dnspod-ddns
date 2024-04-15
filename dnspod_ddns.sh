@@ -69,7 +69,7 @@ for host in "${hosts[@]}"; do
     fi
     ddns_result="$(echo ${ddns#*message\"} | cut -d'"' -f2)"
     echo -n "DDNS update result: $ddns_result "
-    msg_text="${msg_text}${host}: ${ddns_result}\n"
+    msg_text="${msg_text}${host}: ${ddns_result}<br>"
     echo $ddns | grep -Eo "$IPREX" | tail -n1
   else
     echo -n Get $host.$domain error :
@@ -80,10 +80,11 @@ done
 if [[ ${update_flag} -eq "true" && $? -eq 0 ]]; then
   URL="https://gotify.example.com"
   TITLE="DDNS via DNSPod"
+  MESSAGE="${msg_text}Old IP: ${DNSID}, New IP: ${URLIP}"
   PRIORITY="5"
 
   curl "$URL" \
     --silent --show-error \
-    --data '{"message": "'"${msg_text}"'", "title": "'"${TITLE}"'", "priority":'"${PRIORITY}"', "extras": {"client::display": {"contentType": "text/markdown"}}}' \
+    --data '{"message": "'"${MESSAGE}"'", "title": "'"${TITLE}"'", "priority":'"${PRIORITY}"', "extras": {"client::display": {"contentType": "text/markdown"}}}' \
     --header 'Content-Type: application/json'
 fi
